@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block title %}Login{% endblock title %}
+
+{% block content %}
+{% load crispy_forms_tags %}
+
+<div class="container-fluid">
+    <div class="container" align='center'>
+        <h1 class="display-4">Login</h1>
+        <form method="post">{% csrf_token %}
+            <div class="form-group">
+                <div class="col-sm-6">
+                    {{ form.username | as_crispy_field }}
+                </div>
+                <div class="col-sm-6">
+                    {{ form.password | as_crispy_field }}
+                </div>
+                <small>Belum punya akun?, klik <a href=" {% url 'signup' %} ">disni!</a></small><br>
+                <button type="submit" class="mt-1 btn-sm btn-outline-success">Masuk</button>
+            </div>
+        </form>
+
+    </div>
+</div>
+
+{% endblock content %}

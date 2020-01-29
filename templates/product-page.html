@@ -1,0 +1,84 @@
+{% extends 'base.html' %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>Material Design Bootstrap</title>
+</head>
+
+<body>
+
+{% block content %}
+{% include 'snippets/nav.html' %}
+<!--Main layout-->
+<main class="mt-5 pt-4">
+  <div class="container dark-grey-text mt-5">
+
+    <!--Grid row-->
+    <div class="row wow fadeIn">
+
+      <!--Grid column-->
+      <div class="col-md-6 mb-4">
+
+        <img src="{{ object.image.url }}" class="img-fluid" alt="">
+
+      </div>
+      <!--Grid column-->
+
+      <!--Grid column-->
+      <div class="col-md-6 mb-4">
+
+        <!--Content-->
+        <div class="p-4">
+
+          <div class="mb-3">
+              <span class="badge red mr-1">{{ object.get_category_display }}</span>
+          </div>
+          <h1> {{ object.title }} </h1>
+          <p class="lead">
+            {% if object.discount_price %}
+              <span class="mr-1">
+                <del>Rp. {{ object.price }}</del>
+              </span>
+              <span>Rp. {{ object.discount_price }}</span>
+            {% else %}
+            <span>Rp. {{ object.price }}</span>
+            {% endif %}
+          </p>
+
+          <p class="lead font-weight-bold">Description</p>
+
+          <p>{{ object.description }}</p>
+
+          {% if user.is_authenticated %}
+          <a href="{{ object.get_add_to_cart_url }}" class="btn btn-primary btn-md my-0 p">
+            Tambahkan ke keranjang
+            <i class="fas fa-shopping-cart ml-1"></i>
+          </a>
+          <a href="{{ object.get_remove_from_cart_url }}" class="btn btn-danger btn-md my-0 p">
+            Hapus dari keranjang
+            <i class="fas fa-shopping-cart ml-1"></i>
+          </a>
+          {% endif %}
+
+        </div>
+        <!--Content-->
+
+      </div>
+      <!--Grid column-->
+
+    </div>
+    <!--Grid row-->
+
+
+  </div>
+</main>
+<!--Main layout-->
+{% endblock content %}
+
+</body>
+
+</html>
